@@ -1,0 +1,20 @@
+{% load static %}
+<div class="category-nav">
+  <span class="category-header">Categories<i class="fa fa-list"></i></span>
+  <ul class="category-list">
+    {% load mptt_tags %} {% recursetree category %}
+
+    <li class="dropdown side-dropdown">
+      <a {% if not node.is_leaf_node %} data-toggle="dropdown" aria-expanded="true" {% endif %}
+        href="{% url 'category_product' node.id node.slug %}"
+      >
+        {{node.title}}
+        <i
+          class="fa fa-angle-right"
+        ></i
+      ></a>
+    </li>
+    {% endrecursetree %}
+  </ul>
+</div>
+<!-- /category nav -->

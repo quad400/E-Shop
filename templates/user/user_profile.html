@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="section">
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            {% include "user/user_panel.html" %}
+        </div>
+        <div class="col-md-9">
+            <div class="order-summary clearfix">
+                <div class="section-title">
+                    <h3 class="title">My Profile</h3>
+                </div>
+            </div>
+            <table class="shopping-cart-table table">
+                <tr>
+                    <th class="text-left" style="font-size: 15px;">Username</th>
+                    <td class="text-left" style="font-size: 15px;">{{user.username}}</td>
+                </tr>
+                <tr>
+                    <th class="text-left" style="font-size: 15px;">Email</th>
+                    <td class="text-left" style="font-size: 15px;">{{user.email}}</td>
+                </tr>
+                <tr>
+                    <th class="text-left" style="font-size: 15px;">Name</th>
+                    <td class="text-left" style="font-size: 15px;">{{user.first_name}} {{user.last_name}}</td>
+                </tr>
+                <tr>
+                    <th class="text-left" style="font-size: 15px;">Address</th>
+                    <td class="text-left" style="font-size: 15px;">{{profile.address}}</td>
+                </tr>
+                <tr>
+                    <th class="text-left" style="font-size: 15px;">Phone</th>
+                    <td class="text-left" style="font-size: 15px;">{{profile.phone}}</td>
+                </tr>
+                <tr>
+                    <th class="text-left" style="font-size: 15px;">Zip</th>
+                    <td class="text-left" style="font-size: 15px;">{{profile.zip}}</td>
+                </tr>
+                <tr>
+                    <th class="text-left" style="font-size: 15px;">City</th>
+                    <td class="text-left" style="font-size: 15px;">{{profile.city}}</td>
+                </tr>
+                <tr>
+                    <th class="text-left" style="font-size: 15px;">Country</th>
+                    <td class="text-left" style="font-size: 15px;">{{profile.country}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock content %}

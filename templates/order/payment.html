@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+  
+<script src="https://js.stripe.com/v3/"></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?version=3.52.1&features=fetch"></script>
+
+<section>
+    <div class="container" style="height: 50vh;">
+        <!DOCTYPE html>
+      <div class="product">
+        <img src="https://i.imgur.com/EHyR2nP.png" style="height: 200px; width: 150px;" alt="The cover of Stubborn Attachments" />
+        <div class="description">
+          <h3>Stubborn Attachments</h3>
+          <h5>$20.00</h5>
+        </div>
+      </div>
+      <form action="/create-checkout-session" method="POST">
+        <button type="submit" id="checkout-button">Checkout</button>
+      </form>
+
+    </div>
+</section>
+
+<!-- <script>
+
+console.log('Good posture')
+    fetch("/config").then((result) => {
+        return result.json();
+    }).then((data) => {
+        
+        const stripe = Stripe(data.publicKey);
+        document.querySelector("#submitBtn").addEventListener("click", ()=>{
+            console.log('bad guy')
+            fetch("/create-checkout-session/").then((result) => {return result.json();})
+            .then((data)=>{
+            console.log(data);
+            return stripe.redirectToCheckout({
+                sessionId: data.sessionId})
+                }).then((res)=>{
+                console.log(res)
+            })
+        })
+    })
+
+</script> -->
+{% endblock content %}

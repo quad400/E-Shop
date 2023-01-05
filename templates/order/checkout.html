@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+
+    <!-- <form action="">
+        {{form}}
+        <button class="btn  primary-btn" type="submit">Checkout</button>
+    </form> -->
+
+    <form action="{% url 'checkout' %}" method="post">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-md-6">
+                <div class="billing-details">
+                    <p>Already a customer ? <a href="{% url 'account_login' %}">Login</a></p>
+                    <div class="section-title">
+                        <h3 class="title">Billing Details</h3>
+                    </div>
+                    <div class="form-group">
+                        <!-- <input class="input" type="text" name="address" placeholder="Address"> -->
+                        {{form.street_address}}
+                    </div>
+                    <div class="form-group">
+                        <!-- <input class="input" type="text" name="address" placeholder="Address"> -->
+                        {{form.apartment_address}}
+                    </div>
+                    <div class="form-group">
+                        <!-- <input class="input" type="text" name="city" placeholder="City"> -->
+                        {{form.country}}
+                    </div>
+                    <div class="form-group">
+                        <!-- <input class="input" type="text" name="country" placeholder="Country"> -->
+                        {{form.zip}}
+                    </div>
+    
+                </div>
+                {% if request.user.is_authenticated%}
+                <button class="primary-btn" type="submit">Checkout</button> 
+                {% else %}
+                <a href="{% url 'account_signup' %}">Create an Account</a>
+                {% endif %}
+            </div>
+            
+        </div>
+    </div>
+
+    </form>
+        
+</div>
+{% endblock content %}

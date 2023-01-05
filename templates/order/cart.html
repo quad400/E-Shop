@@ -1,0 +1,12 @@
+{% load static %}
+{% load cart_template_tags %}
+<!-- Cart -->
+<li class="header-cart dropdown default-dropdown">
+    <a href="{% url 'shop-cart' %}">
+        <div class="header-btns-icon">
+            <i class="fa fa-shopping-cart"></i>
+            <span class="qty">{{request.user|cart_item_count}}</span>
+        </div>
+    </a>
+</li>
+<!-- /Cart -->

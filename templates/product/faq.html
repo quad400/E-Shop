@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="container" style="height: 100vh;">
+    <div class="col-md-6">
+        <div class="accordion" id="accordionExample">
+            {% for fq in faq %}
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button" type="button" 
+                            data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                            aria-expanded="true" aria-controls="collapseOne">
+                        {{fq.question}}
+                    </button>
+                </h2>
+                <div class="accordion-collapse collapse" 
+                                        id="#ollapseOne" 
+                                aria-label="headingOne" 
+                                data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <strong>
+                            {{fq.answer|safe}}
+                        </strong>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+  </div>
+{% endblock content %}

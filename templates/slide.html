@@ -1,0 +1,29 @@
+<div class="container">
+  <div id="responsive-nav">
+    {% include "category_nav.html" %}
+  </div>
+  <div id="home">
+    <!-- container -->
+    <div class="container">
+      <div class="home-wrap">
+        <!-- home slick -->
+        <div id="home-slick">
+          <!-- banner -->
+          {% for product in product_slide %}
+
+          <div class="banner banner-2">
+            <img src="{{product.image.url}}" alt="" style="height: 500px;" />
+            <div class="banner-caption text-center">
+              <h1 style="color: white;">{{product.title}}</h1>
+              <a href="{% url 'product_detail' product.id product.slug %}" class="primary-btn">Shop Now</a>
+            </div>
+          </div>            
+          {% endfor %}
+          <!-- /banner -->
+        </div>
+        <!-- /home slick -->
+      </div>
+      <!-- /home wrap -->
+    </div>
+  </div>
+</div>

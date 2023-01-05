@@ -1,0 +1,25 @@
+
+<div class="container" style="margin-top: 40px;height: 100vh;">
+    <!-- row -->
+    <div class="row"> 
+        <!-- Product Single -->
+        {% load mptt_tags %}
+        {% recursetree category %}
+        <div class="col-md-3 col-sm-6 col-xs-6">
+                <div class="product product-single">
+                    <a href="{% url 'category_product' node.id node.slug %}">
+                        <div class="product-thumb">
+                            <img src="{{node.image.url}}" alt="" style="height: 200px;">
+                        </div>
+                    </a>
+                    <div class="product-body">
+                        <h2 class="product-name"><a href="{% url 'category_product' node.id node.slug %}">{{node.title}}</a></h2>
+                    </div>
+                </div>
+        </div> 
+        <!-- /Product Single -->
+        {% endrecursetree %}
+    </div>
+    <!-- Row -->
+</div>
+<!-- container -->

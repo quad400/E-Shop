@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+
+{% block head_title %}{% trans "Signup" %}{% endblock %}
+
+{% block content %}
+<div class="container" style="height: 100vh;">
+    <h1>{% trans "Sign Up" %}</h1>
+
+    <p>{% blocktrans %}Already have an account? Then please <a style="color: orangered;" href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
+
+    <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+    {% csrf_token %}
+        <div class="col-md-6">
+
+            <div class="form-group">
+                <label for="inputUsername4" class="form-label">Username</label>
+                <input id="inputUsername4" class="form-control input" type="text" name="username" />
+                <span >{{ form.username.errors }}</span>
+            </div>
+            <div class="form-group">
+                <label for="inputUsername4" class="form-label">Email</label>
+                <input id="inputUsername4" class="form-control input" type="email" name="email" />
+                <span >{{ form.email.errors }}</span>
+            </div>
+
+            <div class="form-group">
+                <label for="inputPassword4" class="form-label">Password</label>
+                <input id="inputPassword4" class="form-control input" type="password" name="password1"/>
+                <span >{{ form.password1.errors }}</span>
+            </div>
+
+            <div class="form-group">
+                <label for="inputPassword4" class="form-label">Confirm Password</label>
+                <input id="inputPassword4" class="form-control input" type="password" name="password2"/>
+                <span >{{ form.password2.errors }}</span>
+            </div>
+            <!-- {{ form.as_p }} -->
+            {% if redirect_field_value %}
+            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+            {% endif %}
+            <button class="primary-btn col-md-6" type="submit">{% trans "Sign Up" %} &raquo;</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

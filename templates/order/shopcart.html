@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+
+{% block content %}
+  	<!-- BREADCRUMB -->
+	<div id="breadcrumb">
+		<div class="container">
+			<ul class="breadcrumb">
+				<li><a href="/">Home</a></li>
+				<li class="active">Cart</li>
+			</ul>
+		</div>
+	</div>
+	<!-- /BREADCRUMB -->
+
+	<!-- section -->
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+                <div class="col-md-12">
+                    <div class="order-summary clearfix">
+                        <div class="section-title">
+                            <h3 class="title">Order Review</h3>
+                        </div>
+                        <table class="shopping-cart-table table">
+                            <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th></th>
+                                    <th class="text-center">Price</th>
+                                    <th class="text-center">Quantity</th>
+                                    <th class="text-center">Total</th>
+                                    <th class="text-right"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for cart in shopcart %}
+                                    <tr>
+                                        <td class="thumb"><img src="{{cart.product.image.url}}" alt=""></td>
+                                        <td class="details">
+                                            <a href="{% url 'product_detail' cart.product.id cart.product.slug %}" style="
+                                                                    display: block; 
+                                                                    width: 300px; 
+                                                                    overflow:hidden;
+                                                                    white-space:nowrap;
+                                                                    text-overflow:ellipsis;">
+                                                                    
+                                            {{cart.product.title}}</a>
+                                            <ul>
+                                                <li><span>Size: XL</span></li>
+                                                <li><span>Color: Camelot</span></li>
+                                            </ul>
+                                        </td>
+                                        <td class="price text-center">
+                                            {% if cart.get_discount_price %}
+                                            <strong>${{cart.get_discount_price}}</strong>
+                                            <small><del class="font-weak">${{cart.get_price}}</small></del></td>
+                                            {% else %}
+                                            <strong>${{cart.get_price}}</strong>
+                                            {% endif %}
+                                            <br>
+                                        <td class="qty text-center">
+                                                <a href="{% url 'addtocart' cart.product.id %}" ><i class="fa fa-chevron-up"></i></a>
+                                                <strong>{{ cart.quantity }}</strong>
+                                                <a href="{% url 'remove-single-quantity-product' cart.product.id %}" ><i class="fa fa-chevron-down"></i></a>
+                                            </div>
+                                        </td>
+                                        <td class="total text-center"><strong class="primary-color">${{ cart.amount_price }}</strong></td>
+                                        <td class="text-right"><a href="{% url 'remove-product-from-cart' cart.product.id %}" class="main-btn icon-btn"><i class="fa fa-close"></i></a></td>
+                                    </tr>
+                                {% endfor %}
+                                
+
+                            </tbody>
+                            <tfoot>
+                                {% if total %}
+                                  
+                                <tr>
+                                    <th class="empty" colspan="3"></th>
+                                    <th>SUBTOTAL</th>
+                                    <th colspan="2" class="sub-total">
+                                        ${{total}}
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th class="empty" colspan="3"></th>
+                                    <th>SHIPING</th>
+                                    <td colspan="2">Free Shipping</td>
+                                </tr>
+                                <tr>
+                                    <th class="empty" colspan="3"></th>
+                                    <th>TOTAL</th>
+                                    <th colspan="2" class="total">${{total}}</th>
+                                </tr>
+                                {% endif %}
+                            </tfoot>
+                        </table>
+                        {% if shopcart %}
+                        <div class="pull-right">
+                            <a href="{% url 'checkout' %}" class="primary-btn">Place Order</a>
+                        </div>
+                        {% else %}
+                        <div style="display: flex; justify-content: space-between;">
+                            <p>You do not have and item in your cart</p>
+                            <a href="/" class="primary-btn">Continue Shopping</a>
+                        </div>
+                        {% endif %}
+                    </div>
+
+                </div>
+			</div>
+			<!-- /row -->
+	</div>
+		<!-- /container -->
+	</div>
+	<!-- /section -->
+
+{% endblock content %}
